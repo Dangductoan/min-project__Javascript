@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form_validation</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="main">
+      <form action="" method="POST" class="form" id="register-form">
+        <h3 class="heading">Thanh vien dang ky</h3>
+        <p class="desc">Cung nhau hoc lap trinh tai F8 ❤️</p>
+
+        <div class="spacer"></div>
+
+        <div class="form-group">
+          <label for="fullname" class="form-label">Ten day du</label>
+          <input
+            id="fullname"
+            type="text"
+            rules="required"
+            name="fullname"
+            class="form-control"
+            placeholder="vd: Toan Dang"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            id="email"
+            type="text"
+            rules="required|email"
+            name="email"
+            class="form-control"
+            placeholder="email@domain.com"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password" class="form-label">Nhap mat khau</label>
+          <input
+            id="password"
+            type="password"
+            rules="required|min:6"
+            name="password"
+            class="form-control"
+            placeholder="Nhap mat khau"
+          />
+          <span class="form-message"></span>
+        </div>
+
+        <button class="form-submit">Dang ky</button>
+      </form>
+    </div>
+    <script src="./validator.js"></script>
+    <script>
+      Validator("#register-form", {
+        onSubmit: function (data) {
+          console.log(data);
+        },
+      });
+    </script>
+  </body>
+</html>

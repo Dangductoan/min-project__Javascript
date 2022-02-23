@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Form_validation</title>
+</head>
+
+<body>
+    <div class="main">
+        <form action="" method="POST" class="form" id="form-1">
+            <h3 class="heading">Thanh vien dang ky </h3>
+            <p class="desc">Cung nhau hoc lap trinh tai F8 ❤️</p>
+
+            <div class="spacer"></div>
+
+            <div class="form-group">
+                <label for="fullname" class="form-label">Ten day du</label>
+                <input id="fullname" type="text" name="fullname" class="form-control" placeholder="vd: Toan Dang">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="text" name="email" class="form-control" placeholder="email@domain.com">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Nhap mat khau</label>
+                <input id="password" type="password" name="password" class="form-control" placeholder="Nhap mat khau">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Nhap lai mat khau</label>
+                <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" placeholder="Nhap lai mat khau">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group horizontal">
+                <label for="password_confirmation" class="form-label">Giới tính</label>
+                <div>
+                    <input type="checkbox" name="Gender" value="Male" class="form-control"> Male
+                </div>
+                <div>
+                    <input type="checkbox" name="Gender" value="Female" class="form-control"> Female
+                </div>
+                <div>
+                    <input type="checkbox" name="Gender" value="Other" class="form-control"> Other
+                </div>
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit">Dang ky</button>
+
+
+        </form>
+        <form action="" method="POST" class="form" id="form-2">
+            <h3 class="heading">Thanh vien dang ky </h3>
+            <p class="desc">Cung nhau hoc lap trinh tai F8 ❤️</p>
+
+            <div class="spacer"></div>
+
+
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="text" name="email" class="form-control" placeholder="email@domain.com">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Nhap mat khau</label>
+                <input id="password" type="password" name="password" class="form-control" placeholder="Nhap mat khau">
+                <span class="form-message"></span>
+            </div>
+
+
+
+
+            <button class="form-submit">Dang Nhap</button>
+
+
+        </form>
+    </div>
+    <script src="./app.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            //Mong muon cua chung ta
+            Validator({
+                form: '#form-1',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+                    Validator.isRequired('#fullname'),
+                    Validator.isEmail('#email'),
+                    Validator.minLength('#password', 6),
+                    Validator.isRequired('#password_confirmation'),
+                    Validator.isRequired('input[name="Gender"]'),
+                    Validator.isConfirmed('#password_confirmation', function() {
+                        return document.querySelector('#form-1 #password').value;
+                    }, 'Mat khau nhap lai khong chinh xac'),
+
+
+
+
+                ],
+                onSubmit: function(data) {
+                    //call API
+                    console.log(data)
+                }
+            })
+            Validator({
+                form: '#form-2',
+                formGroupSelector: '.form-group',
+                errorSelector: '.form-message',
+                rules: [
+
+                    Validator.isEmail('#email'),
+                    Validator.minLength('#password', 6),
+
+
+
+
+
+
+                ],
+                onSubmit: function(data) {
+                    //call API
+                    console.log(data)
+                }
+            })
+
+        });
+    </script>
+
+</body>
+
+</html>
